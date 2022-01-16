@@ -3,22 +3,18 @@ package hello.core.order;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
-import hello.core.member.MemoryMemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+
+// RequiredArgsConstructor -> final이 붙은 필드를 모아서 생성자를 자도응로 생성해줌. 생성자Autowired랑 같은 효과
 @Component
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
     // final을 붙이면 무조건 값이 있어야함을 강요 // 생성자로 주입받은 값이 고정 되도록
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
-
-    @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
