@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderServiceImpl implements OrderService {
 
+    // final을 붙이면 무조건 값이 있어야함을 강요 // 생성자로 주입받은 값이 고정 되도록
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
